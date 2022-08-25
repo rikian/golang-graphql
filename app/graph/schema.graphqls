@@ -1,0 +1,59 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+input Register {
+  user_email: String!
+  user_name: String!
+  user_password: String!
+}
+
+input Login {
+  user_email: String!
+  user_password: String!
+}
+
+type Product {
+  UserId: String
+  ProductId: String
+  ProductName: String
+  ProductStock: Int
+  ProductPrice: Int
+  CreatedDate: String
+  LastUpdate: String
+}
+
+type User {
+  user_id: String
+  user_email: String
+  user_name: String
+  user_image: String
+  user_status: String
+  created_date: String
+  last_update: String
+  products: [Product]
+}
+
+type ResponseLogin {
+  user: User
+  status: Int
+  message: String
+}
+
+type ResponseRegister {
+  error: String
+  status: Int
+  message: String
+}
+
+type Query {
+  user: User
+  users: [User]
+  product: Product
+  products: [Product]
+}
+
+type Mutation {
+  register(input: Register): ResponseRegister
+  login(input: Login): ResponseLogin
+}
